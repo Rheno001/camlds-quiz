@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>JavaScript Quiz</title>
+  <style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  body {
+    background-color: #c0c0c0;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    color: #000;
+    margin: 0;
+    padding: 10px;
+  }
+
+  .container {
+    max-width: 700px;
+    margin: 20px auto;
+    background-color: #ffffff;
+    border: 2px solid #000000;
+    border-top-color: #dfdfdf;
+    border-left-color: #dfdfdf;
+    border-right-color: #808080;
+    border-bottom-color: #808080;
+    padding: 0;
+  }
+
+  .header {
+    background-color: #000080;
+    color: #ffffff;
+    padding: 8px 12px;
+    font-weight: bold;
+    font-size: 16px;
+    border-bottom: 2px solid #808080;
+    text-align: center;
+  }
+
+  .header h1 {
+    margin: 0;
+    font-size: 16px;
+  }
+
+  .quiz-container {
+    padding: 15px;
+  }
+
+  .question {
+    margin-bottom: 20px;
+    padding: 12px;
+    background-color: #f0f0f0;
+    border: 1px solid #808080;
+    border-top-color: #dfdfdf;
+    border-left-color: #dfdfdf;
+  }
+
+  .question h3 {
+    margin: 0 0 10px 0;
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  .options {
+    display: block;
+  }
+
+  .option {
+    padding: 8px 10px;
+    margin: 6px 0;
+    background-color: #ffffff;
+    border: 2px outset #dfdfdf;
+    cursor: pointer;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+  }
+
+  .option:hover {
+    background-color: #e6e6e6;
+  }
+
+  .option:active {
+    border: 2px inset #dfdfdf;
+  }
+
+  .option.selected {
+    background-color: #000080;
+    color: #ffffff;
+    border: 2px inset #dfdfdf;
+  }
+
+  .option.correct {
+    background-color: #008000;
+    color: #ffffff;
+    border: 2px inset #dfdfdf;
+  }
+
+  .option.wrong {
+    background-color: #800000;
+    color: #ffffff;
+    border: 2px inset #dfdfdf;
+  }
+
+  .submit-btn, .retake-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin: 20px 0 10px 0;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    border: 2px outset #dfdfdf;
+    background-color: #c0c0c0;
+  }
+
+  .submit-btn {
+    background-color: #c0c0c0;
+  }
+
+  .submit-btn:hover, .retake-btn:hover {
+    background-color: #e6e6e6;
+  }
+
+  .submit-btn:active, .retake-btn:active {
+    border: 2px inset #dfdfdf;
+  }
+
+  .result {
+    text-align: center;
+    padding: 15px;
+    background-color: #f0f0f0;
+    border: 1px solid #808080;
+    margin: 15px 0;
+  }
+
+  .result h2 {
+    margin: 0 0 8px 0;
+    font-size: 16px;
+    color: #000080;
+  }
+
+  .explanation {
+    margin-top: 12px;
+    padding: 10px;
+    background-color: #ffffe0;
+    border: 1px dashed #808080;
+    font-size: 13px;
+    line-height: 1.4;
+  }
+
+  .hidden { display: none; }
+</style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>JavaScript Quiz</h1>
+      <p>Test your JS knowledge!</p>
+    </div>
+
+    <div class="quiz-container" id="quiz">
+      <!-- Questions will be injected here -->
+    </div>
+
+    <div id="result" class="hidden">
+      <div class="result">
+        <h2 id="score-text"></h2>
+        <p id="score-detail"></p>
+      </div>
+      <button class="retake-btn" onclick="retakeQuiz()">Retake Quiz</button>
+    </div>
+  </div>
+
+  <script>
+    // === 30+ JavaScript MCQs ===
+    const allQuestions = [
+      {
+        question: "Which of the following is NOT a JavaScript data type?",
+        options: ["Boolean", "String", "Float", "Undefined"],
+        answer: 2,
+        explanation: "'Float' is not a primitive data type in JavaScript. Numbers are just 'number'."
+      },
+      {
+        question: "What will `console.log(typeof [])` print?",
+        options: ["array", "object", "list", "undefined"],
+        answer: 1,
+        explanation: "Arrays are objects in JavaScript, so `typeof []` returns 'object'."
+      },
+      {
+        question: "How do you create a function in JavaScript?",
+        options: ["function myFunc()", "func myFunc()", "create myFunc()", "myFunc := function()"],
+        answer: 0,
+        explanation: "The correct syntax is `function myFunc() {}`."
+      },
+      {
+        question: "What is the output of `2 + '2'`?",
+        options: ["4", "22", "NaN", "TypeError"],
+        answer: 1,
+        explanation: "JavaScript converts the number 2 to string and concatenates → '22'."
+      },
+      {
+        question: "Which method adds an element to the end of an array?",
+        options: ["push()", "pop()", "shift()", "unshift()"],
+        answer: 0,
+        explanation: "`push()` adds to the end. `pop()` removes from end."
+      },
+      {
+        question: "What does `===` check?",
+        options: ["Value only", "Type only", "Value and type", "Reference"],
+        answer: 2,
+        explanation: "Strict equality checks both value and type."
+      },
+      {
+        question: "How do you stop an interval timer?",
+        options: ["clearInterval()", "stopInterval()", "clearTimer()", "endInterval()"],
+        answer: 0,
+        explanation: "`clearInterval(timerId)` stops a repeating timer."
+      },
+      {
+        question: "What is a closure?",
+        options: ["A function with no parameters", "A function inside another function that remembers its scope", "A blocked function", "A private method"],
+        answer: 1,
+        explanation: "Closures allow inner functions to access outer function variables even after the outer function finishes."
+      },
+      {
+        question: "What will `Boolean('false')` return?",
+        options: ["false", "true", "undefined", "Error"],
+        answer: 1,
+        explanation: "Any non-empty string is truthy, even 'false'."
+      },
+      {
+        question: "Which keyword creates a constant?",
+        options: ["var", "let", "const", "static"],
+        answer: 2,
+        explanation: "`const` declares a block-scoped constant."
+      },
+      {
+        question: "What is the purpose of `event.preventDefault()`?",
+        options: ["Stop page reload", "Stop event bubbling", "Prevent default browser behavior", "Prevent all events"],
+        answer: 2,
+        explanation: "It stops actions like form submit or link navigation."
+      },
+      {
+        question: "How do you select an element by ID?",
+        options: ["getElementById()", "querySelector()", "getElementsByClassName()", "select()"],
+        answer: 0,
+        explanation: "`document.getElementById('id')` is the correct method."
+      },
+      {
+        question: "What does `NaN` stand for?",
+        options: ["Not a Name", "Not a Number", "New and Null", "No Assignment"],
+        answer: 1,
+        explanation: "`NaN` means 'Not a Number' — result of invalid math."
+      },
+      {
+        question: "Which loop is guaranteed to run at least once?",
+        options: ["for", "while", "do...while", "forEach"],
+        answer: 2,
+        explanation: "`do...while` runs the block first, then checks condition."
+      },
+      {
+        question: "What is `this` in a regular function?",
+        options: ["The function itself", "The global object (window)", "undefined", "The parent object"],
+        answer: 1,
+        explanation: "In non-strict mode, `this` refers to `window`. In strict mode, it's `undefined`."
+      },
+      {
+        question: "How do you convert a string to a number?",
+        options: ["parseInt()", "toNumber()", "Number()", "Both A and C"],
+        answer: 3,
+        explanation: "`Number('123')` and `parseInt('123')` both convert strings to numbers."
+      },
+      {
+        question: "What will `[] == ![]` return?",
+        options: ["false", "true", "Error", "undefined"],
+        answer: 1,
+        explanation: "Coercion: `![]` → `false`, `[] == false` → `true` due to loose equality."
+      },
+      {
+        question: "What is the output of `console.log(0.1 + 0.2 === 0.3)`?",
+        options: ["true", "false", "NaN", "Error"],
+        answer: 1,
+        explanation: "Floating point precision: 0.1 + 0.2 = 0.30000000000000004"
+      },
+      {
+        question: "Which is not a falsy value?",
+        options: ["0", "''", "'0'", "null"],
+        answer: 2,
+        explanation: "The string '0' is truthy. All others are falsy."
+      },
+      {
+        question: "How do you add an event listener?",
+        options: ["addEventListener()", "onClick()", "attachEvent()", "listen()"],
+        answer: 0,
+        explanation: "`element.addEventListener('click', handler)` is standard."
+      },
+      {
+        question: "What does `JSON.parse()` do?",
+        options: ["Converts object to string", "Converts string to object", "Parses HTML", "Validates JSON"],
+        answer: 1,
+        explanation: "Turns JSON string into JavaScript object."
+      },
+      {
+        question: "What is an IIFE?",
+        options: ["Immediately Invoked Function Expression", "Infinite Loop", "Internal Function", "Inline Event"],
+        answer: 0,
+        explanation: "A function that runs as soon as it's defined: `(function() {...})()`."
+      },
+      {
+        question: "Which method removes the last element from an array?",
+        options: ["pop()", "shift()", "slice()", "splice()"],
+        answer: 0,
+        explanation: "`pop()` removes and returns the last element."
+      },
+      {
+        question: "What will `typeof null` return?",
+        options: ["null", "object", "undefined", "string"],
+        answer: 1,
+        explanation: "Historical bug: `typeof null` returns 'object'."
+      },
+      {
+        question: "How do you create a promise?",
+        options: ["new Promise()", "Promise.create()", "promise()", "new Async()"],
+        answer: 0,
+        explanation: "`new Promise((resolve, reject) => {...})`"
+      },
+      {
+        question: "What does `async` before a function do?",
+        options: ["Makes it run faster", "Allows await inside", "Makes it synchronous", "Returns a string"],
+        answer: 1,
+        explanation: "`async` functions can use `await` and always return a promise."
+      },
+      {
+        question: "What is event delegation?",
+        options: ["Attaching events to parent instead of many children", "Copying events", "Removing events", "Blocking events"],
+        answer: 0,
+        explanation: "Better performance: one listener on parent handles all child clicks."
+      },
+      {
+        question: "What will `console.log([1,2,3].map(parseInt))` print?",
+        options: ["[1,2,3]", "[1,NaN,NaN]", "[1,2,3]", "Error"],
+        answer: 1,
+        explanation: "`parseInt` gets index as second argument → parseInt('1',0), parseInt('2',1), parseInt('3',2) → [1, NaN, NaN]"
+      },
+      {
+        question: "Which is block-scoped?",
+        options: ["var", "let", "const", "Both B and C"],
+        answer: 3,
+        explanation: "`let` and `const` are block-scoped. `var` is function-scoped."
+      },
+      {
+        question: "What does `Array.from()` do?",
+        options: ["Creates array from array-like object", "Copies array", "Flattens array", "Filters array"],
+        answer: 0,
+        explanation: "Converts NodeList, string, Set, etc. into real array."
+      }
+    ];
+
+    let currentQuestions = [];
+    let userAnswers = [];
+    let quizSubmitted = false;
+
+    // Start or restart quiz
+    function startQuiz() {
+      // Pick 10 random unique questions
+      const shuffled = [...allQuestions].sort(() => 0.5 - Math.random());
+      currentQuestions = shuffled.slice(0, 20);
+      userAnswers = new Array(20).fill(null);
+      quizSubmitted = false;
+      renderQuiz();
+      document.getElementById('result').classList.add('hidden');
+    }
+
+    // Render questions
+    function renderQuiz() {
+      const quizEl = document.getElementById('quiz');
+      quizEl.innerHTML = '';
+
+      currentQuestions.forEach((q, i) => {
+        const qDiv = document.createElement('div');
+        qDiv.className = 'question';
+
+        qDiv.innerHTML = `
+          <h3>${i + 1}. ${q.question}</h3>
+          <div class="options">
+            ${q.options.map((opt, idx) => `
+              <div class="option ${userAnswers[i] === idx ? 'selected' : ''} 
+                           ${quizSubmitted ? (idx === q.answer ? 'correct' : userAnswers[i] === idx ? 'wrong' : '') : ''}"
+                   onclick="${!quizSubmitted && userAnswers[i] === null ? `selectOption(${i}, ${idx})` : ''}">
+                ${String.fromCharCode(65 + idx)}. ${opt}
+              </div>
+            `).join('')}
+          </div>
+          ${quizSubmitted && userAnswers[i] !== null ? `
+            <div class="explanation">
+              <strong>${userAnswers[i] === q.answer ? 'Correct!' : 'Incorrect'}</strong><br>
+              ${q.explanation}
+            </div>
+          ` : ''}
+        `;
+
+        quizEl.appendChild(qDiv);
+      });
+
+      // Add submit button
+      if (!quizSubmitted) {
+        const submitBtn = document.createElement('button');
+        submitBtn.textContent = 'Submit Quiz';
+        submitBtn.className = 'submit-btn';
+        submitBtn.onclick = submitQuiz;
+        quizEl.appendChild(submitBtn);
+      }
+    }
+
+    // Select option (one-time)
+    function selectOption(qIndex, optIndex) {
+      if (quizSubmitted || userAnswers[qIndex] !== null) return;
+      userAnswers[qIndex] = optIndex;
+      renderQuiz();
+    }
+
+    // Submit and show results
+    function submitQuiz() {
+      quizSubmitted = true;
+      let correct = 0;
+      userAnswers.forEach((ans, i) => {
+        if (ans === currentQuestions[i].answer) correct++;
+      });
+
+      const score = correct;
+      const total = currentQuestions.length;
+      const percentage = Math.round((score / total) * 100);
+
+      document.getElementById('score-text').textContent = `You scored ${score}/${total} (${percentage}%)`;
+      document.getElementById('score-detail').textContent = 
+        `${score} correct, ${total - score} incorrect`;
+
+      renderQuiz();
+      document.getElementById('result').classList.remove('hidden');
+    }
+
+    // Retake with new questions
+    function retakeQuiz() {
+      startQuiz();
+    }
+
+    // Start on load
+    window.onload = startQuiz;
+  </script>
+</body>
+</html>
