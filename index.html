@@ -175,188 +175,251 @@
 
   <script>
     // === 30+ JavaScript MCQs ===
-    const allQuestions = [
-      {
-        question: "Which of the following is NOT a JavaScript data type?",
-        options: ["Boolean", "String", "Float", "Undefined"],
-        answer: 2,
-        explanation: "'Float' is not a primitive data type in JavaScript. Numbers are just 'number'."
-      },
-      {
-        question: "What will `console.log(typeof [])` print?",
-        options: ["array", "object", "list", "undefined"],
-        answer: 1,
-        explanation: "Arrays are objects in JavaScript, so `typeof []` returns 'object'."
-      },
-      {
-        question: "How do you create a function in JavaScript?",
-        options: ["function myFunc()", "func myFunc()", "create myFunc()", "myFunc := function()"],
-        answer: 0,
-        explanation: "The correct syntax is `function myFunc() {}`."
-      },
-      {
-        question: "What is the output of `2 + '2'`?",
-        options: ["4", "22", "NaN", "TypeError"],
-        answer: 1,
-        explanation: "JavaScript converts the number 2 to string and concatenates → '22'."
-      },
-      {
-        question: "Which method adds an element to the end of an array?",
-        options: ["push()", "pop()", "shift()", "unshift()"],
-        answer: 0,
-        explanation: "`push()` adds to the end. `pop()` removes from end."
-      },
-      {
-        question: "What does `===` check?",
-        options: ["Value only", "Type only", "Value and type", "Reference"],
-        answer: 2,
-        explanation: "Strict equality checks both value and type."
-      },
-      {
-        question: "How do you stop an interval timer?",
-        options: ["clearInterval()", "stopInterval()", "clearTimer()", "endInterval()"],
-        answer: 0,
-        explanation: "`clearInterval(timerId)` stops a repeating timer."
-      },
-      {
-        question: "What is a closure?",
-        options: ["A function with no parameters", "A function inside another function that remembers its scope", "A blocked function", "A private method"],
-        answer: 1,
-        explanation: "Closures allow inner functions to access outer function variables even after the outer function finishes."
-      },
-      {
-        question: "What will `Boolean('false')` return?",
-        options: ["false", "true", "undefined", "Error"],
-        answer: 1,
-        explanation: "Any non-empty string is truthy, even 'false'."
-      },
-      {
-        question: "Which keyword creates a constant?",
-        options: ["var", "let", "const", "static"],
-        answer: 2,
-        explanation: "`const` declares a block-scoped constant."
-      },
-      {
-        question: "What is the purpose of `event.preventDefault()`?",
-        options: ["Stop page reload", "Stop event bubbling", "Prevent default browser behavior", "Prevent all events"],
-        answer: 2,
-        explanation: "It stops actions like form submit or link navigation."
-      },
-      {
-        question: "How do you select an element by ID?",
-        options: ["getElementById()", "querySelector()", "getElementsByClassName()", "select()"],
-        answer: 0,
-        explanation: "`document.getElementById('id')` is the correct method."
-      },
-      {
-        question: "What does `NaN` stand for?",
-        options: ["Not a Name", "Not a Number", "New and Null", "No Assignment"],
-        answer: 1,
-        explanation: "`NaN` means 'Not a Number' — result of invalid math."
-      },
-      {
-        question: "Which loop is guaranteed to run at least once?",
-        options: ["for", "while", "do...while", "forEach"],
-        answer: 2,
-        explanation: "`do...while` runs the block first, then checks condition."
-      },
-      {
-        question: "What is `this` in a regular function?",
-        options: ["The function itself", "The global object (window)", "undefined", "The parent object"],
-        answer: 1,
-        explanation: "In non-strict mode, `this` refers to `window`. In strict mode, it's `undefined`."
-      },
-      {
-        question: "How do you convert a string to a number?",
-        options: ["parseInt()", "toNumber()", "Number()", "Both A and C"],
-        answer: 3,
-        explanation: "`Number('123')` and `parseInt('123')` both convert strings to numbers."
-      },
-      {
-        question: "What will `[] == ![]` return?",
-        options: ["false", "true", "Error", "undefined"],
-        answer: 1,
-        explanation: "Coercion: `![]` → `false`, `[] == false` → `true` due to loose equality."
-      },
-      {
-        question: "What is the output of `console.log(0.1 + 0.2 === 0.3)`?",
-        options: ["true", "false", "NaN", "Error"],
-        answer: 1,
-        explanation: "Floating point precision: 0.1 + 0.2 = 0.30000000000000004"
-      },
-      {
-        question: "Which is not a falsy value?",
-        options: ["0", "''", "'0'", "null"],
-        answer: 2,
-        explanation: "The string '0' is truthy. All others are falsy."
-      },
-      {
-        question: "How do you add an event listener?",
-        options: ["addEventListener()", "onClick()", "attachEvent()", "listen()"],
-        answer: 0,
-        explanation: "`element.addEventListener('click', handler)` is standard."
-      },
-      {
-        question: "What does `JSON.parse()` do?",
-        options: ["Converts object to string", "Converts string to object", "Parses HTML", "Validates JSON"],
-        answer: 1,
-        explanation: "Turns JSON string into JavaScript object."
-      },
-      {
-        question: "What is an IIFE?",
-        options: ["Immediately Invoked Function Expression", "Infinite Loop", "Internal Function", "Inline Event"],
-        answer: 0,
-        explanation: "A function that runs as soon as it's defined: `(function() {...})()`."
-      },
-      {
-        question: "Which method removes the last element from an array?",
-        options: ["pop()", "shift()", "slice()", "splice()"],
-        answer: 0,
-        explanation: "`pop()` removes and returns the last element."
-      },
-      {
-        question: "What will `typeof null` return?",
-        options: ["null", "object", "undefined", "string"],
-        answer: 1,
-        explanation: "Historical bug: `typeof null` returns 'object'."
-      },
-      {
-        question: "How do you create a promise?",
-        options: ["new Promise()", "Promise.create()", "promise()", "new Async()"],
-        answer: 0,
-        explanation: "`new Promise((resolve, reject) => {...})`"
-      },
-      {
-        question: "What does `async` before a function do?",
-        options: ["Makes it run faster", "Allows await inside", "Makes it synchronous", "Returns a string"],
-        answer: 1,
-        explanation: "`async` functions can use `await` and always return a promise."
-      },
-      {
-        question: "What is event delegation?",
-        options: ["Attaching events to parent instead of many children", "Copying events", "Removing events", "Blocking events"],
-        answer: 0,
-        explanation: "Better performance: one listener on parent handles all child clicks."
-      },
-      {
-        question: "What will `console.log([1,2,3].map(parseInt))` print?",
-        options: ["[1,2,3]", "[1,NaN,NaN]", "[1,2,3]", "Error"],
-        answer: 1,
-        explanation: "`parseInt` gets index as second argument → parseInt('1',0), parseInt('2',1), parseInt('3',2) → [1, NaN, NaN]"
-      },
-      {
-        question: "Which is block-scoped?",
-        options: ["var", "let", "const", "Both B and C"],
-        answer: 3,
-        explanation: "`let` and `const` are block-scoped. `var` is function-scoped."
-      },
-      {
-        question: "What does `Array.from()` do?",
-        options: ["Creates array from array-like object", "Copies array", "Flattens array", "Filters array"],
-        answer: 0,
-        explanation: "Converts NodeList, string, Set, etc. into real array."
-      }
-    ];
+   const allQuestions = [
+  // ✅ JavaScript (reduced)
+  {
+    question: "Which of the following is NOT a JavaScript data type?",
+    options: ["Boolean", "String", "Float", "Undefined"],
+    answer: 2,
+    explanation: "'Float' is not a primitive data type in JavaScript."
+  },
+  {
+    question: "What will `typeof null` return?",
+    options: ["null", "object", "undefined", "string"],
+    answer: 1,
+    explanation: "A known JavaScript bug: typeof null returns 'object'."
+  },
+  {
+    question: "What does `===` check in JavaScript?",
+    options: ["Value only", "Type only", "Value and type", "Reference"],
+    answer: 2,
+    explanation: "Strict equality checks value and type."
+  },
+  {
+    question: "Which method adds an element to the end of an array?",
+    options: ["push()", "pop()", "shift()", "unshift()"],
+    answer: 0,
+    explanation: "`push()` adds to the end of an array."
+  },
+  {
+    question: "What does `JSON.parse()` do?",
+    options: ["Converts object to string", "Converts string to object", "Parses HTML", "Validates JSON"],
+    answer: 1,
+    explanation: "Turns a JSON string into a JavaScript object."
+  },
+  {
+    question: "What will `console.log(typeof [])` print?",
+    options: ["array", "object", "list", "undefined"],
+    answer: 1,
+    explanation: "Arrays are objects."
+  },
+  {
+    question: "Which is block-scoped?",
+    options: ["var", "let", "const", "Both B and C"],
+    answer: 3,
+    explanation: "`let` and `const` are block-scoped."
+  },
+  {
+    question: "What does `async` before a function mean?",
+    options: ["Runs faster", "Allows await inside", "Makes it synchronous", "Returns a string"],
+    answer: 1,
+    explanation: "`async` functions can use `await` and return a promise."
+  },
+  {
+    question: "What will `2 + '2'` output?",
+    options: ["4", "22", "NaN", "Error"],
+    answer: 1,
+    explanation: "Number converts to string → '22'."
+  },
+  {
+    question: "Which loop runs at least once?",
+    options: ["for", "while", "do...while", "forEach"],
+    answer: 2,
+    explanation: "`do...while` runs before checking the condition."
+  },
+
+  // ✅ React Questions
+  {
+    question: "React is mainly used for building what?",
+    options: ["Databases", "User Interfaces", "Operating Systems", "Servers"],
+    answer: 1,
+    explanation: "React is a JavaScript library for building UIs."
+  },
+  {
+    question: "What is JSX?",
+    options: ["JavaScript XML", "A CSS framework", "A server language", "A database model"],
+    answer: 0,
+    explanation: "JSX lets you write HTML inside JavaScript."
+  },
+  {
+    question: "Which command creates a new React project (Vite)?",
+    options: ["npm create vite@latest", "npm start react", "react new project", "npm init react"],
+    answer: 0,
+    explanation: "Vite uses `npm create vite@latest`."
+  },
+  {
+    question: "State in React is used for what?",
+    options: ["Storing dynamic data", "Writing CSS", "Creating APIs", "Storing files"],
+    answer: 0,
+    explanation: "State stores changing UI values."
+  },
+  {
+    question: "Which hook is used to manage state in a functional component?",
+    options: ["useEffect", "useState", "useMemo", "useRef"],
+    answer: 1,
+    explanation: "`useState` manages state."
+  },
+  {
+    question: "Which hook is used to run code when a component mounts?",
+    options: ["useEffect", "useState", "useRef", "useContext"],
+    answer: 0,
+    explanation: "`useEffect(()=>{},[])` runs once on mount."
+  },
+  {
+    question: "Props in React are used to:",
+    options: ["Store files", "Pass data between components", "Style components", "Declare variables"],
+    answer: 1,
+    explanation: "Props allow components to receive external data."
+  },
+  {
+    question: "React components must return:",
+    options: ["CSS only", "A database", "UI (JSX)", "A JSON file"],
+    answer: 2,
+    explanation: "Components return JSX markup."
+  },
+  {
+    question: "Which keyword lets us output values in JSX?",
+    options: ["{}", "()", "[]", "<>"],
+    answer: 0,
+    explanation: "Curly braces allow JavaScript inside JSX."
+  },
+  {
+    question: "What does lifting state up mean?",
+    options: [
+      "Moving state to a parent component",
+      "Deleting state",
+      "Moving CSS to a parent",
+      "Creating new components"
+    ],
+    answer: 0,
+    explanation: "Used to share state between multiple children."
+  },
+  {
+    question: "What is the virtual DOM?",
+    options: [
+      "A copy of the database",
+      "A lightweight copy of the real DOM",
+      "An external server",
+      "Browser storage"
+    ],
+    answer: 1,
+    explanation: "React uses it to update UI efficiently."
+  },
+  {
+    question: "React Router is used for:",
+    options: ["Styling", "State management", "Page navigation", "Animations"],
+    answer: 2,
+    explanation: "For multi-page navigation in React apps."
+  },
+
+  // ✅ TailwindCSS Questions
+  {
+    question: "TailwindCSS is a:",
+    options: ["Backend framework", "Utility-first CSS framework", "Database tool", "JavaScript compiler"],
+    answer: 1,
+    explanation: "Tailwind is a utility-first CSS framework."
+  },
+  {
+    question: "Which command installs Tailwind in a project?",
+    options: [
+      "npm install tailwindcss",
+      "npm make tailwind",
+      "npm style tailwind",
+      "npm build tailwind"
+    ],
+    answer: 0,
+    explanation: "Tailwind installs using `npm install tailwindcss`."
+  },
+  {
+    question: "Which Tailwind class makes text bold?",
+    options: ["text-lg", "font-bold", "text-bold", "bold"],
+    answer: 1,
+    explanation: "`font-bold` applies bold weight."
+  },
+  {
+    question: "Which class controls margin?",
+    options: ["m-", "p-", "text-", "bg-"],
+    answer: 0,
+    explanation: "`m-` is used for margin."
+  },
+  {
+    question: "Which class adds padding?",
+    options: ["pt-", "pb-", "px-", "All of the above"],
+    answer: 3,
+    explanation: "Tailwind has padding utilities for all directions."
+  },
+  {
+    question: "How do you change background color?",
+    options: ["bg-red-500", "color: red", "background: red", "bg-red"],
+    answer: 0,
+    explanation: "`bg-red-500` is a valid Tailwind class."
+  },
+  {
+    question: "Which utility centers text?",
+    options: ["text-center", "center-text", "align-center", "txt-middle"],
+    answer: 0,
+    explanation: "`text-center` centers text."
+  },
+  {
+    question: "Which class makes a flex container?",
+    options: ["flex", "grid", "block", "inline"],
+    answer: 0,
+    explanation: "Using `flex` enables flexbox."
+  },
+  {
+    question: "Which class rounds borders?",
+    options: ["border-2", "rounded", "curve", "round"],
+    answer: 1,
+    explanation: "`rounded` creates rounded corners."
+  },
+  {
+    question: "Which class hides an element?",
+    options: ["invisible", "hidden", "none", "clear"],
+    answer: 1,
+    explanation: "`hidden` removes it from layout."
+  },
+  {
+    question: "Responsive classes follow which pattern?",
+    options: ["sm:bg-red-500", "res:bg", "mobile:bg", "resp-color"],
+    answer: 0,
+    explanation: "Tailwind uses breakpoint prefixes like sm:, md:, lg:."
+  },
+  {
+    question: "Which class creates a grid layout?",
+    options: ["grid", "flex", "block", "inline-grid"],
+    answer: 0,
+    explanation: "Tailwind enables CSS grid with `grid`."
+  },
+  {
+    question: "Tailwind uses what file for configuration?",
+    options: ["tailwind.config.js", "config.css", "package.json", "style.config"],
+    answer: 0,
+    explanation: "Theme, colors, utilities are customized there."
+  },
+  {
+    question: "Which class gives a shadow?",
+    options: ["shadow", "box-shadow", "shadowed", "shadow-sm-only"],
+    answer: 0,
+    explanation: "`shadow` adds a default shadow."
+  },
+  {
+    question: "How do you make text larger?",
+    options: ["text-xl", "font-large", "txt-size", "big-text"],
+    answer: 0,
+    explanation: "`text-xl` increases font size."
+  }
+];
+
 
     let currentQuestions = [];
     let userAnswers = [];
