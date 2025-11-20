@@ -1,163 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>JavaScript Quiz</title>
   <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  
-  body {
-    background-color: #c0c0c0;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 14px;
-    color: #000;
-    margin: 0;
-    padding: 10px;
-  }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-  .container {
-    max-width: 700px;
-    margin: 20px auto;
-    background-color: #ffffff;
-    border: 2px solid #000000;
-    border-top-color: #dfdfdf;
-    border-left-color: #dfdfdf;
-    border-right-color: #808080;
-    border-bottom-color: #808080;
-    padding: 0;
-  }
+    body {
+      background-color: #c0c0c0;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 14px;
+      color: #000;
+      margin: 0;
+      padding: 10px;
+    }
 
-  .header {
-    background-color: #000080;
-    color: #ffffff;
-    padding: 8px 12px;
-    font-weight: bold;
-    font-size: 16px;
-    border-bottom: 2px solid #808080;
-    text-align: center;
-  }
+    .container {
+      max-width: 700px;
+      margin: 20px auto;
+      background-color: #ffffff;
+      border: 2px solid #000000;
+      border-top-color: #dfdfdf;
+      border-left-color: #dfdfdf;
+      border-right-color: #808080;
+      border-bottom-color: #808080;
+      padding: 0;
+    }
 
-  .header h1 {
-    margin: 0;
-    font-size: 16px;
-  }
+    .header {
+      background-color: #000080;
+      color: #ffffff;
+      padding: 8px 12px;
+      font-weight: bold;
+      font-size: 16px;
+      border-bottom: 2px solid #808080;
+      text-align: center;
+    }
 
-  .quiz-container {
-    padding: 15px;
-  }
+    .header h1 {
+      margin: 0;
+      font-size: 16px;
+    }
 
-  .question {
-    margin-bottom: 20px;
-    padding: 12px;
-    background-color: #f0f0f0;
-    border: 1px solid #808080;
-    border-top-color: #dfdfdf;
-    border-left-color: #dfdfdf;
-  }
+    .quiz-container {
+      padding: 15px;
+    }
 
-  .question h3 {
-    margin: 0 0 10px 0;
-    font-size: 14px;
-    font-weight: bold;
-  }
+    .question {
+      margin-bottom: 20px;
+      padding: 12px;
+      background-color: #f0f0f0;
+      border: 1px solid #808080;
+      border-top-color: #dfdfdf;
+      border-left-color: #dfdfdf;
+    }
 
-  .options {
-    display: block;
-  }
+    .question h3 {
+      margin: 0 0 10px 0;
+      font-size: 14px;
+      font-weight: bold;
+    }
 
-  .option {
-    padding: 8px 10px;
-    margin: 6px 0;
-    background-color: #ffffff;
-    border: 2px outset #dfdfdf;
-    cursor: pointer;
-    font-family: 'Courier New', monospace;
-    font-size: 14px;
-  }
+    .options {
+      display: block;
+    }
 
-  .option:hover {
-    background-color: #e6e6e6;
-  }
+    .option {
+      padding: 8px 10px;
+      margin: 6px 0;
+      background-color: #ffffff;
+      border: 2px outset #dfdfdf;
+      cursor: pointer;
+      font-family: 'Courier New', monospace;
+      font-size: 14px;
+    }
 
-  .option:active {
-    border: 2px inset #dfdfdf;
-  }
+    .option:hover {
+      background-color: #e6e6e6;
+    }
 
-  .option.selected {
-    background-color: #000080;
-    color: #ffffff;
-    border: 2px inset #dfdfdf;
-  }
+    .option:active {
+      border: 2px inset #dfdfdf;
+    }
 
-  .option.correct {
-    background-color: #008000;
-    color: #ffffff;
-    border: 2px inset #dfdfdf;
-  }
+    .option.selected {
+      background-color: #000080;
+      color: #ffffff;
+      border: 2px inset #dfdfdf;
+    }
 
-  .option.wrong {
-    background-color: #800000;
-    color: #ffffff;
-    border: 2px inset #dfdfdf;
-  }
+    .option.correct {
+      background-color: #008000;
+      color: #ffffff;
+      border: 2px inset #dfdfdf;
+    }
 
-  .submit-btn, .retake-btn {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    margin: 20px 0 10px 0;
-    font-family: 'Courier New', monospace;
-    font-size: 14px;
-    font-weight: bold;
-    cursor: pointer;
-    border: 2px outset #dfdfdf;
-    background-color: #c0c0c0;
-  }
+    .option.wrong {
+      background-color: #800000;
+      color: #ffffff;
+      border: 2px inset #dfdfdf;
+    }
 
-  .submit-btn {
-    background-color: #c0c0c0;
-  }
+    .submit-btn,
+    .retake-btn {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      margin: 20px 0 10px 0;
+      font-family: 'Courier New', monospace;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      border: 2px outset #dfdfdf;
+      background-color: #c0c0c0;
+    }
 
-  .submit-btn:hover, .retake-btn:hover {
-    background-color: #e6e6e6;
-  }
+    .submit-btn {
+      background-color: #c0c0c0;
+    }
 
-  .submit-btn:active, .retake-btn:active {
-    border: 2px inset #dfdfdf;
-  }
+    .submit-btn:hover,
+    .retake-btn:hover {
+      background-color: #e6e6e6;
+    }
 
-  .result {
-    text-align: center;
-    padding: 15px;
-    background-color: #f0f0f0;
-    border: 1px solid #808080;
-    margin: 15px 0;
-  }
+    .submit-btn:active,
+    .retake-btn:active {
+      border: 2px inset #dfdfdf;
+    }
 
-  .result h2 {
-    margin: 0 0 8px 0;
-    font-size: 16px;
-    color: #000080;
-  }
+    .result {
+      text-align: center;
+      padding: 15px;
+      background-color: #f0f0f0;
+      border: 1px solid #808080;
+      margin: 15px 0;
+    }
 
-  .explanation {
-    margin-top: 12px;
-    padding: 10px;
-    background-color: #ffffe0;
-    border: 1px dashed #808080;
-    font-size: 13px;
-    line-height: 1.4;
-  }
+    .result h2 {
+      margin: 0 0 8px 0;
+      font-size: 16px;
+      color: #000080;
+    }
 
-  .hidden { display: none; }
-</style>
+    .explanation {
+      margin-top: 12px;
+      padding: 10px;
+      background-color: #ffffe0;
+      border: 1px dashed #808080;
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
 </head>
+
 <body>
   <div class="container">
     <div class="header">
-      <h1>JavaScript Quiz</h1>
-      <p>Test your JS knowledge!</p>
+      <h1>HTML Quiz</h1>
+      <p>Test your HTML knowledge!</p>
     </div>
 
     <div class="quiz-container" id="quiz">
@@ -174,161 +185,159 @@
   </div>
 
   <script>
-    // === 30+ JavaScript MCQs ===
-   const allQuestions = [
-  // ✅ JavaScript (reduced)
- [
-  {
-    question: "What does HTML tell the browser?",
-    options: [
-      "How the page should look",
-      "What content should appear on the page",
-      "How the buttons should behave",
-      "How fast the page loads"
-    ],
-    answer: 1,
-    explanation: "HTML defines the content—what goes on the page."
-  },
-  {
-    question: "Which tag contains information like page title and metadata?",
-    options: ["<body>", "<head>", "<title>", "<info>"],
-    answer: 1,
-    explanation: "The <head> stores invisible page information such as title and meta tags."
-  },
-  {
-    question: "Which tag represents the visible part of a webpage?",
-    options: ["<top>", "<body>", "<head>", "<screen>"],
-    answer: 1,
-    explanation: "<body> contains everything users see."
-  },
-  {
-    question: "Which line tells the browser to use modern HTML?",
-    options: ["<doctype modern>", "<!DOCTYPE html>", "<html-doctype>", "<meta html5>"],
-    answer: 1,
-    explanation: "<!DOCTYPE html> signals modern HTML usage."
-  },
-  {
-    question: "Which element displays a paragraph?",
-    options: ["<text>", "<para>", "<p>", "<t>"],
-    answer: 2,
-    explanation: "<p> creates a paragraph element."
-  },
-  {
-    question: "Which attribute sets the image source?",
-    options: ["href", "src", "link", "alt"],
-    answer: 1,
-    explanation: "src points to the image file location."
-  },
-  {
-    question: "What does the alt attribute do in an <img> tag?",
-    options: [
-      "Adds a title",
-      "Changes image size",
-      "Provides text if the image fails to load",
-      "Links the image to another page"
-    ],
-    answer: 2,
-    explanation: "alt provides descriptive fallback text."
-  },
-  {
-    question: "Which tag creates a clickable link?",
-    options: ["<a>", "<link>", "<click>", "<href>"],
-    answer: 0,
-    explanation: "The <a> element creates hyperlinks."
-  },
-  {
-    question: "Which tag forces a line break inside text?",
-    options: ["<break>", "<line>", "<br>", "<lb>"],
-    answer: 2,
-    explanation: "<br> inserts a line break."
-  ],
-  {
-    question: "Which tag is used for the largest heading?",
-    options: ["<h6>", "<head>", "<h1>", "<title>"],
-    answer: 2,
-    explanation: "<h1> is the highest level heading."
-  },
-  {
-    question: "What does <strong> represent?",
-    options: [
-      "Bold text with importance",
-      "Italic text",
-      "Highlighted text",
-      "Normal bold styling only"
-    ],
-    answer: 0,
-    explanation: "<strong> indicates important, bold content."
-  },
-  {
-    question: "Which tag is used for comments in HTML?",
-    options: ["// comment", "<!-- comment -->", "<comment>", "<note>"],
-    answer: 1,
-    explanation: "<!-- comment --> is ignored by browsers."
-  },
-  {
-    question: "Which tag defines a table row?",
-    options: ["<row>", "<tr>", "<td>", "<th>"],
-    answer: 1,
-    explanation: "<tr> defines a table row."
-  },
-  {
-    question: "Which list type displays items with numbers?",
-    options: ["<ul>", "<ol>", "<list>", "<num>"],
-    answer: 1,
-    explanation: "<ol> creates an ordered (numbered) list."
-  },
-  {
-    question: "What does the id attribute represent?",
-    options: [
-      "A reusable style name",
-      "A unique identifier for one element",
-      "A group for multiple elements",
-      "A reference to an external file"
-    ],
-    answer: 1,
-    explanation: "id must be unique and identifies a single element."
-  },
-  {
-    question: "What does the class attribute represent?",
-    options: [
-      "A unique name",
-      "A group name that can be reused",
-      "A comment",
-      "A link to another page"
-    ],
-    answer: 1,
-    explanation: "class groups multiple elements for styling or JS."
-  },
-  {
-    question: "Which tag displays preformatted text with preserved spaces?",
-    options: ["<p>", "<pre>", "<code>", "<format>"],
-    answer: 1,
-    explanation: "<pre> keeps spacing and line breaks exactly as typed."
-  },
-  {
-    question: "Which tag highlights text with a yellow marker effect?",
-    options: ["<highlight>", "<yellow>", "<mark>", "<ins>"],
-    answer: 2,
-    explanation: "<mark> visually highlights text."
-  },
-  {
-    question: "Which tag is used for large pulled-out quotations?",
-    options: ["<quote>", "<q>", "<blockquote>", "<cite>"],
-    answer: 2,
-    explanation: "<blockquote> displays long quoted text."
-  },
-  {
-    question: "What does usemap in an <img> tag do?",
-    options: [
-      "Links the image to a CSS file",
-      "Attaches a clickable area map",
-      "Makes the image float left",
-      "Adds hover effects"
-    ],
-    answer: 1,
-    explanation: "usemap connects an image to a <map> for clickable regions."
-  }
-]
+    const allQuestions =
+      [
+        {
+          question: "What does HTML tell the browser?",
+          options: [
+            "How the page should look",
+            "What content should appear on the page",
+            "How the buttons should behave",
+            "How fast the page loads"
+          ],
+          answer: 1,
+          explanation: "HTML defines the content—what goes on the page."
+        },
+        {
+          question: "Which tag contains information like page title and metadata?",
+          options: ["<body>", "<head>", "<title>", "<info>"],
+          answer: 1,
+          explanation: "The <head> stores invisible page information such as title and meta tags."
+        },
+        {
+          question: "Which tag represents the visible part of a webpage?",
+          options: ["<top>", "<body>", "<head>", "<screen>"],
+          answer: 1,
+          explanation: "<body> contains everything users see."
+        },
+        {
+          question: "Which line tells the browser to use modern HTML?",
+          options: ["<doctype modern>", "<!DOCTYPE html>", "<html-doctype>", "<meta html5>"],
+          answer: 1,
+          explanation: "<!DOCTYPE html> signals modern HTML usage."
+        },
+        {
+          question: "Which element displays a paragraph?",
+          options: ["<text>", "<para>", "<p>", "<t>"],
+          answer: 2,
+          explanation: "<p> creates a paragraph element."
+        },
+        {
+          question: "Which attribute sets the image source?",
+          options: ["href", "src", "link", "alt"],
+          answer: 1,
+          explanation: "src points to the image file location."
+        },
+        {
+          question: "What does the alt attribute do in an <img> tag?",
+          options: [
+            "Adds a title",
+            "Changes image size",
+            "Provides text if the image fails to load",
+            "Links the image to another page"
+          ],
+          answer: 2,
+          explanation: "alt provides descriptive fallback text."
+        },
+        {
+          question: "Which tag creates a clickable link?",
+          options: ["<a>", "<link>", "<click>", "<href>"],
+          answer: 0,
+          explanation: "The <a> element creates hyperlinks."
+        },
+        {
+          question: "Which tag forces a line break inside text?",
+          options: ["<break>", "<line>", "<br>", "<lb>"],
+          answer: 2,
+          explanation: "<br> inserts a line break."
+        },
+        {
+          question: "Which tag is used for the largest heading?",
+          options: ["<h6>", "<head>", "<h1>", "<title>"],
+          answer: 2,
+          explanation: "<h1> is the highest level heading."
+        },
+        {
+          question: "What does <strong> represent?",
+          options: [
+            "Bold text with importance",
+            "Italic text",
+            "Highlighted text",
+            "Normal bold styling only"
+          ],
+          answer: 0,
+          explanation: "<strong> indicates important, bold content."
+        },
+        {
+          question: "Which tag is used for comments in HTML?",
+          options: ["// comment", "<!-- comment -->", "<comment>", "<note>"],
+          answer: 1,
+          explanation: "<!-- comment --> is ignored by browsers."
+        },
+        {
+          question: "Which tag defines a table row?",
+          options: ["<row>", "<tr>", "<td>", "<th>"],
+          answer: 1,
+          explanation: "<tr> defines a table row."
+        },
+        {
+          question: "Which list type displays items with numbers?",
+          options: ["<ul>", "<ol>", "<list>", "<num>"],
+          answer: 1,
+          explanation: "<ol> creates an ordered (numbered) list."
+        },
+        {
+          question: "What does the id attribute represent?",
+          options: [
+            "A reusable style name",
+            "A unique identifier for one element",
+            "A group for multiple elements",
+            "A reference to an external file"
+          ],
+          answer: 1,
+          explanation: "id must be unique and identifies a single element."
+        },
+        {
+          question: "What does the class attribute represent?",
+          options: [
+            "A unique name",
+            "A group name that can be reused",
+            "A comment",
+            "A link to another page"
+          ],
+          answer: 1,
+          explanation: "class groups multiple elements for styling or JS."
+        },
+        {
+          question: "Which tag displays preformatted text with preserved spaces?",
+          options: ["<p>", "<pre>", "<code>", "<format>"],
+          answer: 1,
+          explanation: "<pre> keeps spacing and line breaks exactly as typed."
+        },
+        {
+          question: "Which tag highlights text with a yellow marker effect?",
+          options: ["<highlight>", "<yellow>", "<mark>", "<ins>"],
+          answer: 2,
+          explanation: "<mark> visually highlights text."
+        },
+        {
+          question: "Which tag is used for large pulled-out quotations?",
+          options: ["<quote>", "<q>", "<blockquote>", "<cite>"],
+          answer: 2,
+          explanation: "<blockquote> displays long quoted text."
+        },
+        {
+          question: "What does usemap in an <img> tag do?",
+          options: [
+            "Links the image to a CSS file",
+            "Attaches a clickable area map",
+            "Makes the image float left",
+            "Adds hover effects"
+          ],
+          answer: 1,
+          explanation: "usemap connects an image to a <map> for clickable regions."
+        }
+      ]
 
 
 
@@ -409,7 +418,7 @@
       const percentage = Math.round((score / total) * 100);
 
       document.getElementById('score-text').textContent = `You scored ${score}/${total} (${percentage}%)`;
-      document.getElementById('score-detail').textContent = 
+      document.getElementById('score-detail').textContent =
         `${score} correct, ${total - score} incorrect`;
 
       renderQuiz();
@@ -425,4 +434,5 @@
     window.onload = startQuiz;
   </script>
 </body>
+
 </html>
