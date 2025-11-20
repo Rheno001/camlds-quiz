@@ -1,438 +1,310 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>JavaScript Quiz</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HTML Class Quiz</title>
   <style>
-    * {
+    body {
+      background-color: #ffffff;
+      color: #000000;
+      min-height: 100vh;
       margin: 0;
-      padding: 0;
+      padding: 20px;
+      font-family: Arial, sans-serif;
       box-sizing: border-box;
     }
-
-    body {
-      background-color: #c0c0c0;
-      font-family: 'Courier New', Courier, monospace;
-      font-size: 14px;
-      color: #000;
-      margin: 0;
-      padding: 10px;
-    }
-
     .container {
-      max-width: 700px;
-      margin: 20px auto;
-      background-color: #ffffff;
-      border: 2px solid #000000;
-      border-top-color: #dfdfdf;
-      border-left-color: #dfdfdf;
-      border-right-color: #808080;
-      border-bottom-color: #808080;
-      padding: 0;
+      max-width: 800px;
+      margin: 0 auto;
+      border: 1px solid #000000;
+      padding: 30px;
     }
-
-    .header {
-      background-color: #000080;
-      color: #ffffff;
-      padding: 8px 12px;
+    h1 {
+      font-size: 28px;
       font-weight: bold;
-      font-size: 16px;
-      border-bottom: 2px solid #808080;
+      margin-bottom: 10px;
       text-align: center;
     }
-
-    .header h1 {
-      margin: 0;
-      font-size: 16px;
-    }
-
-    .quiz-container {
-      padding: 15px;
-    }
-
-    .question {
-      margin-bottom: 20px;
-      padding: 12px;
-      background-color: #f0f0f0;
-      border: 1px solid #808080;
-      border-top-color: #dfdfdf;
-      border-left-color: #dfdfdf;
-    }
-
-    .question h3 {
-      margin: 0 0 10px 0;
-      font-size: 14px;
+    h2 {
+      font-size: 32px;
       font-weight: bold;
+      text-align: center;
+      margin: 0 0 30px;
     }
-
+    .question-text {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
     .options {
-      display: block;
+      margin-bottom: 20px;
     }
-
-    .option {
-      padding: 8px 10px;
-      margin: 6px 0;
-      background-color: #ffffff;
-      border: 2px outset #dfdfdf;
-      cursor: pointer;
-      font-family: 'Courier New', monospace;
-      font-size: 14px;
-    }
-
-    .option:hover {
-      background-color: #e6e6e6;
-    }
-
-    .option:active {
-      border: 2px inset #dfdfdf;
-    }
-
-    .option.selected {
-      background-color: #000080;
-      color: #ffffff;
-      border: 2px inset #dfdfdf;
-    }
-
-    .option.correct {
-      background-color: #008000;
-      color: #ffffff;
-      border: 2px inset #dfdfdf;
-    }
-
-    .option.wrong {
-      background-color: #800000;
-      color: #ffffff;
-      border: 2px inset #dfdfdf;
-    }
-
-    .submit-btn,
-    .retake-btn {
+    .option-btn {
       display: block;
       width: 100%;
-      padding: 10px;
-      margin: 20px 0 10px 0;
-      font-family: 'Courier New', monospace;
+      padding: 12px;
+      margin-bottom: 10px;
+      border: 1px solid #000000;
+      background-color: #ffffff;
+      text-align: left;
+      cursor: pointer;
+      font-family: Arial, sans-serif;
       font-size: 14px;
+      transition: all 0.2s;
+    }
+    .option-btn.selected {
+      border: 2px solid #000000;
+      background-color: #f0f0f0;
+    }
+    .option-btn:disabled {
+      cursor: not-allowed;
+      opacity: 0.7;
+    }
+    .nav-buttons {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+    .nav-btn, .submit-btn, .new-quiz-btn {
+      padding: 10px;
       font-weight: bold;
       cursor: pointer;
-      border: 2px outset #dfdfdf;
-      background-color: #c0c0c0;
+      border: 1px solid #000000;
     }
-
-    .submit-btn {
-      background-color: #c0c0c0;
+    .nav-btn {
+      flex: 1;
+      background-color: #ffffff;
+      color: #000000;
     }
-
-    .submit-btn:hover,
-    .retake-btn:hover {
-      background-color: #e6e6e6;
+    .nav-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
     }
-
-    .submit-btn:active,
-    .retake-btn:active {
-      border: 2px inset #dfdfdf;
-    }
-
-    .result {
-      text-align: center;
-      padding: 15px;
-      background-color: #f0f0f0;
-      border: 1px solid #808080;
-      margin: 15px 0;
-    }
-
-    .result h2 {
-      margin: 0 0 8px 0;
+    .submit-btn, .new-quiz-btn {
+      width: 100%;
+      padding: 12px;
+      background-color: #000000;
+      color: #ffffff;
       font-size: 16px;
-      color: #000080;
     }
-
-    .explanation {
-      margin-top: 12px;
-      padding: 10px;
-      background-color: #ffffe0;
-      border: 1px dashed #808080;
-      font-size: 13px;
-      line-height: 1.4;
+    .progress {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 14px;
     }
-
-    .hidden {
-      display: none;
+    .results {
+      text-align: center;
     }
+    .score-big {
+      font-size: 48px;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+    .review {
+      max-height: 400px;
+      overflow-y: auto;
+      border-top: 1px solid #000;
+      padding-top: 20px;
+      margin-bottom: 30px;
+      text-align: left;
+    }
+    .review-item {
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #ccc;
+    }
+    .hidden { display: none; }
   </style>
 </head>
-
 <body>
-  <div class="container">
-    <div class="header">
-      <h1>HTML Quiz</h1>
-      <p>Test your HTML knowledge!</p>
-    </div>
 
-    <div class="quiz-container" id="quiz">
-      <!-- Questions will be injected here -->
-    </div>
+<div class="container" id="quizContainer">
+  <h1>HTML Class Quiz</h1>
+  <p id="questionCounter"></p>
 
-    <div id="result" class="hidden">
-      <div class="result">
-        <h2 id="score-text"></h2>
-        <p id="score-detail"></p>
-      </div>
-      <button class="retake-btn" onclick="retakeQuiz()">Retake Quiz</button>
-    </div>
+  <div id="questionContainer">
+    <div class="question-text" id="questionText"></div>
+    <div class="options" id="optionsContainer"></div>
   </div>
 
-  <script>
-    const allQuestions =
-      [
-        {
-          question: "What does HTML tell the browser?",
-          options: [
-            "How the page should look",
-            "What content should appear on the page",
-            "How the buttons should behave",
-            "How fast the page loads"
-          ],
-          answer: 1,
-          explanation: "HTML defines the content—what goes on the page."
-        },
-        {
-          question: "Which tag contains information like page title and metadata?",
-          options: ["<body>", "<head>", "<title>", "<info>"],
-          answer: 1,
-          explanation: "The <head> stores invisible page information such as title and meta tags."
-        },
-        {
-          question: "Which tag represents the visible part of a webpage?",
-          options: ["<top>", "<body>", "<head>", "<screen>"],
-          answer: 1,
-          explanation: "<body> contains everything users see."
-        },
-        {
-          question: "Which line tells the browser to use modern HTML?",
-          options: ["<doctype modern>", "<!DOCTYPE html>", "<html-doctype>", "<meta html5>"],
-          answer: 1,
-          explanation: "<!DOCTYPE html> signals modern HTML usage."
-        },
-        {
-          question: "Which element displays a paragraph?",
-          options: ["<text>", "<para>", "<p>", "<t>"],
-          answer: 2,
-          explanation: "<p> creates a paragraph element."
-        },
-        {
-          question: "Which attribute sets the image source?",
-          options: ["href", "src", "link", "alt"],
-          answer: 1,
-          explanation: "src points to the image file location."
-        },
-        {
-          question: "What does the alt attribute do in an <img> tag?",
-          options: [
-            "Adds a title",
-            "Changes image size",
-            "Provides text if the image fails to load",
-            "Links the image to another page"
-          ],
-          answer: 2,
-          explanation: "alt provides descriptive fallback text."
-        },
-        {
-          question: "Which tag creates a clickable link?",
-          options: ["<a>", "<link>", "<click>", "<href>"],
-          answer: 0,
-          explanation: "The <a> element creates hyperlinks."
-        },
-        {
-          question: "Which tag forces a line break inside text?",
-          options: ["<break>", "<line>", "<br>", "<lb>"],
-          answer: 2,
-          explanation: "<br> inserts a line break."
-        },
-        {
-          question: "Which tag is used for the largest heading?",
-          options: ["<h6>", "<head>", "<h1>", "<title>"],
-          answer: 2,
-          explanation: "<h1> is the highest level heading."
-        },
-        {
-          question: "What does <strong> represent?",
-          options: [
-            "Bold text with importance",
-            "Italic text",
-            "Highlighted text",
-            "Normal bold styling only"
-          ],
-          answer: 0,
-          explanation: "<strong> indicates important, bold content."
-        },
-        {
-          question: "Which tag is used for comments in HTML?",
-          options: ["// comment", "<!-- comment -->", "<comment>", "<note>"],
-          answer: 1,
-          explanation: "<!-- comment --> is ignored by browsers."
-        },
-        {
-          question: "Which tag defines a table row?",
-          options: ["<row>", "<tr>", "<td>", "<th>"],
-          answer: 1,
-          explanation: "<tr> defines a table row."
-        },
-        {
-          question: "Which list type displays items with numbers?",
-          options: ["<ul>", "<ol>", "<list>", "<num>"],
-          answer: 1,
-          explanation: "<ol> creates an ordered (numbered) list."
-        },
-        {
-          question: "What does the id attribute represent?",
-          options: [
-            "A reusable style name",
-            "A unique identifier for one element",
-            "A group for multiple elements",
-            "A reference to an external file"
-          ],
-          answer: 1,
-          explanation: "id must be unique and identifies a single element."
-        },
-        {
-          question: "What does the class attribute represent?",
-          options: [
-            "A unique name",
-            "A group name that can be reused",
-            "A comment",
-            "A link to another page"
-          ],
-          answer: 1,
-          explanation: "class groups multiple elements for styling or JS."
-        },
-        {
-          question: "Which tag displays preformatted text with preserved spaces?",
-          options: ["<p>", "<pre>", "<code>", "<format>"],
-          answer: 1,
-          explanation: "<pre> keeps spacing and line breaks exactly as typed."
-        },
-        {
-          question: "Which tag highlights text with a yellow marker effect?",
-          options: ["<highlight>", "<yellow>", "<mark>", "<ins>"],
-          answer: 2,
-          explanation: "<mark> visually highlights text."
-        },
-        {
-          question: "Which tag is used for large pulled-out quotations?",
-          options: ["<quote>", "<q>", "<blockquote>", "<cite>"],
-          answer: 2,
-          explanation: "<blockquote> displays long quoted text."
-        },
-        {
-          question: "What does usemap in an <img> tag do?",
-          options: [
-            "Links the image to a CSS file",
-            "Attaches a clickable area map",
-            "Makes the image float left",
-            "Adds hover effects"
-          ],
-          answer: 1,
-          explanation: "usemap connects an image to a <map> for clickable regions."
-        }
-      ]
+  <div class="nav-buttons">
+    <button class="nav-btn" id="prevBtn">Previous</button>
+    <button class="nav-btn" id="nextBtn">Next</button>
+  </div>
 
+  <button class="submit-btn" id="submitBtn">Submit Quiz</button>
 
+  <p class="progress" id="progressText"></p>
+</div>
 
+<!-- Results Screen -->
+<div class="container hidden" id="resultsContainer">
+  <h2>Quiz Results</h2>
+  <div class="results">
+    <div class="score-big" id="percentage">0%</div>
+    <div>You got <strong id="correctCount">0</strong> out of <strong id="totalCount">0</strong> correct</div>
+  </div>
 
-    let currentQuestions = [];
-    let userAnswers = [];
-    let quizSubmitted = false;
+  <div class="review" id="reviewAnswers"></div>
 
-    // Start or restart quiz
-    function startQuiz() {
-      // Pick 10 random unique questions
-      const shuffled = [...allQuestions].sort(() => 0.5 - Math.random());
-      currentQuestions = shuffled.slice(0, 20);
-      userAnswers = new Array(20).fill(null);
-      quizSubmitted = false;
-      renderQuiz();
-      document.getElementById('result').classList.add('hidden');
-    }
+  <button class="new-quiz-btn" id="newQuizBtn">Start New Quiz</button>
+</div>
 
-    // Render questions
-    function renderQuiz() {
-      const quizEl = document.getElementById('quiz');
-      quizEl.innerHTML = '';
+<script>
+  const allQuestions = [
+    { id: 1, question: 'What does HTML stand for?', options: ['Hyper Text Markup Language', 'High Tech Modern Language', 'Home Tool Markup Language', 'Hyperlinks and Text Markup Language'], correct: 0 },
+    { id: 2, question: 'In the recipe card analogy, what does HTML represent?', options: ['The decoration', 'The recipe list', 'The oven timer', 'The kitchen'], correct: 1 },
+    { id: 3, question: 'What does CSS tell the browser?', options: ['WHAT goes on the page', 'HOW it should look', 'IF there are errors', 'WHERE to find files'], correct: 1 },
+    { id: 4, question: 'What is the DOM?', options: ['Dynamic Object Model', 'Document Object Model', 'Data Organization Module', 'Design and Objects Map'], correct: 1 },
+    { id: 5, question: 'What does the <title> tag do?', options: ['Creates a heading on the page', 'Shows text in the browser tab', 'Decorates the page', 'Adds a line break'], correct: 1 },
+    { id: 6, question: 'Which section contains invisible information like <title> and <meta>?', options: ['<body>', '<head>', '<html>', '<div>'], correct: 1 },
+    { id: 7, question: 'Does HTML care about uppercase or lowercase letters?', options: ['Yes, always uppercase', 'Yes, always lowercase', 'No, it accepts both', 'Only for attributes'], correct: 2 },
+    { id: 8, question: 'What is the correct syntax for opening an HTML tag?', options: ['[tag]', '(tag)', '<tag>', '{tag}'], correct: 2 },
+    { id: 9, question: 'Which tag does NOT need a closing tag?', options: ['<p>', '<h1>', '<img>', '<div>'], correct: 2 },
+    { id: 10, question: 'What does the "alt" attribute do in an image tag?', options: ['Changes the image size', 'Shows text if picture breaks or for blind users', 'Adds a border', 'Rotates the image'], correct: 1 },
+    { id: 11, question: 'What is the difference between absolute and relative paths?', options: ['They are the same thing', 'Absolute has full address, relative uses nearby folder', 'Relative is for files, absolute is for links', 'Absolute is faster'], correct: 1 },
+    { id: 12, question: 'How many <h1> tags should you have per page?', options: ['None', 'One', 'As many as you want', 'At least five'], correct: 1 },
+    { id: 13, question: 'What does <br> do?', options: ['Makes text bold', 'Creates a line break', 'Draws a horizontal line', 'Starts a new paragraph'], correct: 1 },
+    { id: 14, question: 'When should you use the <pre> tag?', options: ['To preview code', 'To show code or ASCII art exactly as typed', 'To make text bigger', 'To add padding'], correct: 1 },
+    { id: 15, question: 'What is the difference between <strong> and <b>?', options: ['<strong> is for important warnings, <b> is just for thickness', 'They look identical', '<b> is newer', '<strong> makes text bigger'], correct: 0 },
+    { id: 16, question: 'What does the <mark> tag do?', options: ['Marks an error', 'Adds yellow highlight', 'Creates a bookmark', 'Underlines text'], correct: 1 },
+    { id: 17, question: 'Which tag is used for abbreviations?', options: ['<short>', '<abbr>', '<abbreviation>', '<abr>'], correct: 1 },
+    { id: 18, question: 'What does "usemap" attribute do?', options: ['Uses a map API', 'Links image to image map', 'Shows location', 'Adds a background'], correct: 1 },
+    { id: 19, question: 'What is a favicon?', options: ['A favorite video', 'Tiny icon in the browser tab', 'A type of font', 'A favorite page'], correct: 1 },
+    { id: 20, question: 'Which tag creates a table header cell?', options: ['<td>', '<tr>', '<th>', '<table>'], correct: 2 },
+    { id: 21, question: 'What does <ol> stand for?', options: ['Outline List', 'Ordered List', 'Online List', 'Open List'], correct: 1 },
+    { id: 22, question: 'When should you use <ul> instead of <ol>?', options: ['When items are numbered', 'When the order doesn\'t matter', 'Only for links', 'Never'], correct: 1 },
+    { id: 23, question: 'What does a block element do?', options: ['Prevents interaction', 'Takes full width and starts on a new line', 'Sits inside text', 'Hides content'], correct: 1 },
+    { id: 24, question: 'Which is an inline element?', options: ['<p>', '<div>', '<span>', '<table>'], correct: 2 },
+    { id: 25, question: 'Can you have multiple IDs with the same name on one page?', options: ['Yes', 'No, IDs must be unique', 'Only two', 'Yes, if they\'re in different divs'], correct: 1 },
+    { id: 26, question: 'What is the main purpose of the href attribute?', options: ['Specifies heading rank', 'Links to another page or location', 'Changes text color', 'Adds styling'], correct: 1 },
+    { id: 27, question: 'What does target="_blank" do?', options: ['Removes the link', 'Opens link in the same tab', 'Opens link in a new tab', 'Hides the link'], correct: 2 },
+    { id: 28, question: 'What is the correct format for an email link?', options: ['<a href="email@example.com">', '<a href="mailto:email@example.com">', '<a email="example.com">', '<mail href="example.com">'], correct: 1 },
+    { id: 29, question: 'What is the style attribute used for?', options: ['Creates an external stylesheet', 'Applies CSS styles directly to an element', 'Links to CSS file', 'Defines element type'], correct: 1 },
+    { id: 30, question: 'What does the <blockquote> tag represent?', options: ['A single-line quote', 'A large pulled-out quote block', 'A code block', 'A quoted link'], correct: 1 }
+  ];
 
-      currentQuestions.forEach((q, i) => {
-        const qDiv = document.createElement('div');
-        qDiv.className = 'question';
+  // State
+  let questions = [];
+  let currentIndex = 0;
+  let answers = {}; // { questionId: selectedOptionIndex }
+  let submitted = false;
 
-        qDiv.innerHTML = `
-          <h3>${i + 1}. ${q.question}</h3>
-          <div class="options">
-            ${q.options.map((opt, idx) => `
-              <div class="option ${userAnswers[i] === idx ? 'selected' : ''} 
-                           ${quizSubmitted ? (idx === q.answer ? 'correct' : userAnswers[i] === idx ? 'wrong' : '') : ''}"
-                   onclick="${!quizSubmitted && userAnswers[i] === null ? `selectOption(${i}, ${idx})` : ''}">
-                ${String.fromCharCode(65 + idx)}. ${opt}
-              </div>
-            `).join('')}
-          </div>
-          ${quizSubmitted && userAnswers[i] !== null ? `
-            <div class="explanation">
-              <strong>${userAnswers[i] === q.answer ? 'Correct!' : 'Incorrect'}</strong><br>
-              ${q.explanation}
-            </div>
-          ` : ''}
-        `;
+  const quizContainer = document.getElementById('quizContainer');
+  const resultsContainer = document.getElementById('resultsContainer');
+  const questionText = document.getElementById('questionText');
+  const optionsContainer = document.getElementById('optionsContainer');
+  const questionCounter = document.getElementById('questionCounter');
+  const progressText = document.getElementById('progressText');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const submitBtn = document.getElementById('submitBtn');
+  const percentageEl = document.getElementById('percentage');
+  const correctCountEl = document.getElementById('correctCount');
+  const totalCountEl = document.getElementById('totalCount');
+  const reviewAnswers = document.getElementById('reviewAnswers');
+  const newQuizBtn = document.getElementById('newQuizBtn');
 
-        quizEl.appendChild(qDiv);
-      });
+  function getRandomQuestions() {
+    const shuffled = [...allQuestions].sort(() => Math.random() - 0.5);
+    return shuffled.slice(0, 20);
+  }
 
-      // Add submit button
-      if (!quizSubmitted) {
-        const submitBtn = document.createElement('button');
-        submitBtn.textContent = 'Submit Quiz';
-        submitBtn.className = 'submit-btn';
-        submitBtn.onclick = submitQuiz;
-        quizEl.appendChild(submitBtn);
+  function startQuiz() {
+    questions = getRandomQuestions();
+    currentIndex = 0;
+    answers = {};
+    submitted = false;
+    quizContainer.classList.remove('hidden');
+    resultsContainer.classList.add('hidden');
+    renderQuestion();
+  }
+
+  function renderQuestion() {
+    const q = questions[currentIndex];
+    questionCounter.textContent = `Question ${currentIndex + 1} of ${questions.length}`;
+    questionText.textContent = q.question;
+
+    optionsContainer.innerHTML = '';
+    q.options.forEach((option, idx) => {
+      const btn = document.createElement('button');
+      btn.className = 'option-btn';
+      btn.textContent = `${String.fromCharCode(65 + idx)}. ${option}`;
+      btn.onclick = () => selectAnswer(idx);
+      if (answers[q.id] === idx) {
+        btn.classList.add('selected');
       }
+      if (submitted) {
+        btn.disabled = true;
+      }
+      optionsContainer.appendChild(btn);
+    });
+
+    prevBtn.disabled = currentIndex === 0 || submitted;
+    nextBtn.disabled = currentIndex === questions.length - 1 || submitted;
+    submitBtn.style.display = submitted ? 'none' : 'block';
+    progressText.textContent = `Answered: ${Object.keys(answers).length} of ${questions.length}`;
+  }
+
+  function selectAnswer(optionIndex) {
+    if (submitted) return;
+    answers[questions[currentIndex].id] = optionIndex;
+    renderQuestion();
+  }
+
+  prevBtn.onclick = () => {
+    if (currentIndex > 0) {
+      currentIndex--;
+      renderQuestion();
     }
+  };
 
-    // Select option (one-time)
-    function selectOption(qIndex, optIndex) {
-      if (quizSubmitted || userAnswers[qIndex] !== null) return;
-      userAnswers[qIndex] = optIndex;
-      renderQuiz();
+  nextBtn.onclick = () => {
+    if (currentIndex < questions.length - 1) {
+      currentIndex++;
+      renderQuestion();
     }
+  };
 
-    // Submit and show results
-    function submitQuiz() {
-      quizSubmitted = true;
-      let correct = 0;
-      userAnswers.forEach((ans, i) => {
-        if (ans === currentQuestions[i].answer) correct++;
-      });
+  submitBtn.onclick = () => {
+    submitted = true;
+    showResults();
+  };
 
-      const score = correct;
-      const total = currentQuestions.length;
-      const percentage = Math.round((score / total) * 100);
+  function showResults() {
+    let correct = 0;
+    questions.forEach(q => {
+      if (answers[q.id] === q.correct) correct++;
+    });
+    const percentage = Math.round((correct / questions.length) * 100);
 
-      document.getElementById('score-text').textContent = `You scored ${score}/${total} (${percentage}%)`;
-      document.getElementById('score-detail').textContent =
-        `${score} correct, ${total - score} incorrect`;
+    percentageEl.textContent = `${percentage}%`;
+    correctCountEl.textContent = correct;
+    totalCountEl.textContent = questions.length;
 
-      renderQuiz();
-      document.getElementById('result').classList.remove('hidden');
-    }
+    reviewAnswers.innerHTML = '';
+    questions.forEach((q, idx) => {
+      const userAnswer = answers[q.id];
+      const isCorrect = userAnswer === q.correct;
+      const div = document.createElement('div');
+      div.className = 'review-item';
+      div.innerHTML = `
+        <p><strong>${idx + 1}.</strong> ${q.question}</p>
+        <p>Your answer: ${userAnswer !== undefined ? q.options[userAnswer] : 'Not answered'}</p>
+        ${!isCorrect && userAnswer !== undefined ? `<p style="font-weight:bold;">Correct: ${q.options[q.correct]}</p>` : ''}
+      `;
+      reviewAnswers.appendChild(div);
+    });
 
-    // Retake with new questions
-    function retakeQuiz() {
-      startQuiz();
-    }
+    quizContainer.classList.add('hidden');
+    resultsContainer.classList.remove('hidden');
+  }
 
-    // Start on load
-    window.onload = startQuiz;
-  </script>
+  newQuizBtn.onclick = startQuiz;
+
+  // Start the first quiz
+  startQuiz();
+</script>
 </body>
-
 </html>
