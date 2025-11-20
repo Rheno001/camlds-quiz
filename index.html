@@ -179,146 +179,157 @@
   // ✅ JavaScript (reduced)
  [
   {
-    question: "Which tag is used to create a hyperlink in HTML?",
-    options: ["<a>", "<link>", "<p>", "<href>"],
-    answer: 0,
-    explanation: "<a> defines a clickable link."
-  },
-  {
-    question: "Which attribute makes an input field required before submitting a form?",
-    options: ["must", "required", "need", "force"],
-    answer: 1,
-    explanation: "Adding required prevents form submission when empty."
-  },
-  {
-    question: "What does CSS stand for?",
-    options: ["Creative Style Script", "Cascading Style Sheets", "Color Styling System", "Custom Style Setup"],
-    answer: 1,
-    explanation: "CSS means Cascading Style Sheets."
-  },
-  {
-    question: "Which CSS property changes the text color?",
-    options: ["color", "font-style", "background", "text-change"],
-    answer: 0,
-    explanation: "color sets text color."
-  },
-  {
-    question: "What does 'flex' do in TailwindCSS?",
+    question: "What does HTML tell the browser?",
     options: [
-      "Adds a border",
-      "Makes a container use Flexbox",
-      "Changes text size",
-      "Creates a table"
+      "How the page should look",
+      "What content should appear on the page",
+      "How the buttons should behave",
+      "How fast the page loads"
     ],
     answer: 1,
-    explanation: "flex turns the element into a flex container."
+    explanation: "HTML defines the content—what goes on the page."
   },
   {
-    question: "Which Tailwind class adds a light gray background?",
-    options: ["bg-gray-100", "bg-light-gray", "background: gray", "bg-gray"],
-    answer: 0,
-    explanation: "bg-gray-100 is a valid Tailwind utility."
-  },
-  {
-    question: "Which keyword declares a variable in JavaScript?",
-    options: ["var", "set", "let", "Both A and C"],
-    answer: 3,
-    explanation: "JavaScript variables can be declared with var or let (and const)."
-  },
-  {
-    question: "Which symbol starts a single-line comment in JavaScript?",
-    options: ["//", "/*", "<!--", "#"],
-    answer: 0,
-    explanation: "// creates a single-line comment."
-  },
-  {
-    question: "Which built-in function shows a message popup in the browser?",
-    options: ["print()", "alert()", "notify()", "console.log()"],
+    question: "Which tag contains information like page title and metadata?",
+    options: ["<body>", "<head>", "<title>", "<info>"],
     answer: 1,
-    explanation: "alert() opens a browser popup."
+    explanation: "The <head> stores invisible page information such as title and meta tags."
   },
   {
-    question: "What is the result of: 5 * 2?",
-    options: ["25", "10", "52", "2"],
+    question: "Which tag represents the visible part of a webpage?",
+    options: ["<top>", "<body>", "<head>", "<screen>"],
     answer: 1,
-    explanation: "5 multiplied by 2 equals 10."
+    explanation: "<body> contains everything users see."
   },
   {
-    question: "Which file extension does TypeScript use?",
-    options: [".java", ".ts", ".type", ".script"],
+    question: "Which line tells the browser to use modern HTML?",
+    options: ["<doctype modern>", "<!DOCTYPE html>", "<html-doctype>", "<meta html5>"],
     answer: 1,
-    explanation: "TypeScript files use .ts"
+    explanation: "<!DOCTYPE html> signals modern HTML usage."
   },
   {
-    question: "TypeScript is:",
-    options: [
-      "A language that adds types to JavaScript",
-      "A database",
-      "A browser",
-      "A CSS library"
-    ],
-    answer: 0,
-    explanation: "TypeScript adds type checking on top of JavaScript."
-  },
-  {
-    question: "Which HTML element is used to display images?",
-    options: ["<img>", "<image>", "<pic>", "<photo>"],
-    answer: 0,
-    explanation: "<img> displays images in HTML."
+    question: "Which element displays a paragraph?",
+    options: ["<text>", "<para>", "<p>", "<t>"],
+    answer: 2,
+    explanation: "<p> creates a paragraph element."
   },
   {
     question: "Which attribute sets the image source?",
-    options: ["src", "href", "link", "url"],
-    answer: 0,
-    explanation: "src tells the browser where the image is located."
-  },
-  {
-    question: "Which CSS property changes the background color?",
-    options: ["bg", "background-color", "color", "bg-set"],
+    options: ["href", "src", "link", "alt"],
     answer: 1,
-    explanation: "background-color sets the background shade."
+    explanation: "src points to the image file location."
   },
   {
-    question: "Which Tailwind class makes text uppercase?",
-    options: ["text-big", "uppercase", "text-up", "capital"],
-    answer: 1,
-    explanation: "uppercase transforms text into capital letters."
-  },
-  {
-    question: "What does console.log() do?",
+    question: "What does the alt attribute do in an <img> tag?",
     options: [
-      "Saves data to storage",
-      "Shows a message in the browser console",
-      "Runs CSS code",
-      "Creates a popup"
-    ],
-    answer: 1,
-    explanation: "Console.log prints information to developer tools."
-  },
-  {
-    question: "Which JavaScript value means 'no value assigned'?",
-    options: ["null", "NaN", "0", "false"],
-    answer: 0,
-    explanation: "null represents an intentional empty value."
-  },
-  {
-    question: "What does the + operator do with strings?",
-    options: [
-      "Multiplies them",
-      "Adds numbers only",
-      "Joins strings together",
-      "Deletes strings"
+      "Adds a title",
+      "Changes image size",
+      "Provides text if the image fails to load",
+      "Links the image to another page"
     ],
     answer: 2,
-    explanation: "The + operator concatenates strings."
+    explanation: "alt provides descriptive fallback text."
   },
   {
-    question: "Which is a valid TypeScript type?",
-    options: ["number", "digit", "int", "decimal"],
+    question: "Which tag creates a clickable link?",
+    options: ["<a>", "<link>", "<click>", "<href>"],
     answer: 0,
-    explanation: "TypeScript uses 'number' for numeric values."
+    explanation: "The <a> element creates hyperlinks."
+  },
+  {
+    question: "Which tag forces a line break inside text?",
+    options: ["<break>", "<line>", "<br>", "<lb>"],
+    answer: 2,
+    explanation: "<br> inserts a line break."
+  ],
+  {
+    question: "Which tag is used for the largest heading?",
+    options: ["<h6>", "<head>", "<h1>", "<title>"],
+    answer: 2,
+    explanation: "<h1> is the highest level heading."
+  },
+  {
+    question: "What does <strong> represent?",
+    options: [
+      "Bold text with importance",
+      "Italic text",
+      "Highlighted text",
+      "Normal bold styling only"
+    ],
+    answer: 0,
+    explanation: "<strong> indicates important, bold content."
+  },
+  {
+    question: "Which tag is used for comments in HTML?",
+    options: ["// comment", "<!-- comment -->", "<comment>", "<note>"],
+    answer: 1,
+    explanation: "<!-- comment --> is ignored by browsers."
+  },
+  {
+    question: "Which tag defines a table row?",
+    options: ["<row>", "<tr>", "<td>", "<th>"],
+    answer: 1,
+    explanation: "<tr> defines a table row."
+  },
+  {
+    question: "Which list type displays items with numbers?",
+    options: ["<ul>", "<ol>", "<list>", "<num>"],
+    answer: 1,
+    explanation: "<ol> creates an ordered (numbered) list."
+  },
+  {
+    question: "What does the id attribute represent?",
+    options: [
+      "A reusable style name",
+      "A unique identifier for one element",
+      "A group for multiple elements",
+      "A reference to an external file"
+    ],
+    answer: 1,
+    explanation: "id must be unique and identifies a single element."
+  },
+  {
+    question: "What does the class attribute represent?",
+    options: [
+      "A unique name",
+      "A group name that can be reused",
+      "A comment",
+      "A link to another page"
+    ],
+    answer: 1,
+    explanation: "class groups multiple elements for styling or JS."
+  },
+  {
+    question: "Which tag displays preformatted text with preserved spaces?",
+    options: ["<p>", "<pre>", "<code>", "<format>"],
+    answer: 1,
+    explanation: "<pre> keeps spacing and line breaks exactly as typed."
+  },
+  {
+    question: "Which tag highlights text with a yellow marker effect?",
+    options: ["<highlight>", "<yellow>", "<mark>", "<ins>"],
+    answer: 2,
+    explanation: "<mark> visually highlights text."
+  },
+  {
+    question: "Which tag is used for large pulled-out quotations?",
+    options: ["<quote>", "<q>", "<blockquote>", "<cite>"],
+    answer: 2,
+    explanation: "<blockquote> displays long quoted text."
+  },
+  {
+    question: "What does usemap in an <img> tag do?",
+    options: [
+      "Links the image to a CSS file",
+      "Attaches a clickable area map",
+      "Makes the image float left",
+      "Adds hover effects"
+    ],
+    answer: 1,
+    explanation: "usemap connects an image to a <map> for clickable regions."
   }
-]]
+]
+
 
 
 
